@@ -2,6 +2,7 @@ import uuid
 from fastapi import APIRouter, File, UploadFile, HTTPException, status
 import aiofiles
 from pathlib import Path
+from backend.app.services.parser import parse_pdf
 
 upload_router = APIRouter(prefix="/upload")
 
@@ -39,7 +40,10 @@ async def upload_file(file: UploadFile = File(...)):
         )
     finally:
         await file.close()
-    return {"filename": saved_filename, "message": "File uploaded successfully."}
+    
+    documents = parse_pdf(file_path)
+    
+    return {"filename": saved_filename, "message": "File uploaded successfully.", "documents": documents}
             
     
     
