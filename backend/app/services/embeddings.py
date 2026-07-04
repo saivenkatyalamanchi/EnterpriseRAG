@@ -34,7 +34,8 @@ def create_embeddings(chunks):
             {
                 "id":
                     f"{chunk['metadata']['source']}"
-                    f"_{chunk['metadata']['chunk_index']}",
+                    f"_page_{chunk['metadata']['page']}"
+                    f"_chunk_{chunk['metadata']['chunk_index']}",
 
                 "embedding":
                     vector.tolist(),

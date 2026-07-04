@@ -5,6 +5,7 @@ from pathlib import Path
 from backend.app.services.embeddings import create_embeddings
 from backend.app.services.parser import parse_pdf
 from backend.app.services.chunker import chunk_documents
+from backend.app.services.vectordb import store_embeddings, count_documents, clear_database, get_all_documents
 
 upload_router = APIRouter(prefix="/upload")
 
@@ -47,6 +48,8 @@ async def upload_file(file: UploadFile = File(...)):
     chunked_documents = chunk_documents(documents)
     embedded_documents = create_embeddings(chunked_documents)
     
+    store_embeddings(embedded_documents)
+    print(f"Total documents in the database: {count_documents()}")
     return {"filename": saved_filename, "message": "File uploaded successfully.", "documents": documents, "chunked_documents": chunked_documents, "embedded_documents": embedded_documents}
             
     

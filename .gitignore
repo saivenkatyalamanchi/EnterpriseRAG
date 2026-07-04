@@ -218,3 +218,86 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Binary files
+*.exe
+*.dll
+*.dylib
+*.bin
+*.dat
+*.o
+*.obj
+*.a
+*.lib
+*.out
+*.class
+*.jar
+*.war
+*.ear
+
+# Shared libraries
+*.so
+*.dylib
+*.dll
+
+# Archives / compressed binaries
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar
+
+# Model files (useful for AI/ML projects)
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.pb
+*.tflite
+*.gguf
+*.safetensors
+
+# Vector databases / local databases
+*.db
+*.sqlite
+*.sqlite3
+*.parquet
+
+# ChromaDB persistent storage
+backend/data/chroma/
+backend/data/chroma_db/
+
+# Uploaded files
+backend/data/uploads/
+
+# Generated embeddings / caches
+*.npy
+*.npz
+
+# Local environment
+.venv/
+.env
+
+# User uploads
+backend/data/uploads/
+
+# Chroma vector database
+backend/data/chroma/
+backend/data/chroma_db/
+
+# ML artifacts
+*.pt
+*.pth
+*.onnx
+*.gguf
+*.safetensors
+
+# Databases
+*.db
+*.sqlite3
+
+# Python caches
+__pycache__/
+*.py[codz]
