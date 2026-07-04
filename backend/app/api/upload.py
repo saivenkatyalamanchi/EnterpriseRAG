@@ -3,6 +3,7 @@ from fastapi import APIRouter, File, UploadFile, HTTPException, status
 import aiofiles
 from pathlib import Path
 from backend.app.services.parser import parse_pdf
+from backend.app.services.chunker import chunk_documents
 
 upload_router = APIRouter(prefix="/upload")
 
@@ -42,8 +43,9 @@ async def upload_file(file: UploadFile = File(...)):
         await file.close()
     
     documents = parse_pdf(file_path)
+    chunked_documents = chunk_documents(documents)
     
-    return {"filename": saved_filename, "message": "File uploaded successfully.", "documents": documents}
+    return {"filename": saved_filename, "message": "File uploaded successfully.", "documents": chunked_documents}
             
     
     
