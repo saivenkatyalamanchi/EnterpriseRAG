@@ -2,6 +2,7 @@ import uuid
 from fastapi import APIRouter, File, UploadFile, HTTPException, status
 import aiofiles
 from pathlib import Path
+from backend.app.services.embeddings import create_embeddings
 from backend.app.services.parser import parse_pdf
 from backend.app.services.chunker import chunk_documents
 
@@ -44,8 +45,9 @@ async def upload_file(file: UploadFile = File(...)):
     
     documents = parse_pdf(file_path)
     chunked_documents = chunk_documents(documents)
+    embedded_documents = create_embeddings(chunked_documents)
     
-    return {"filename": saved_filename, "message": "File uploaded successfully.", "documents": chunked_documents}
+    return {"filename": saved_filename, "message": "File uploaded successfully.", "documents": documents, "chunked_documents": chunked_documents, "embedded_documents": embedded_documents}
             
     
     
