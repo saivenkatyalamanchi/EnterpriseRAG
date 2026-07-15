@@ -1,0 +1,9 @@
+.venv
+.git
+.gitignore
+__pycache__
+*.pyc
+backend/data/chroma_db
+backend/data/uploads
+.python-version
+README.md
