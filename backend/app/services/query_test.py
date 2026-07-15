@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.app.services.retriever import retrieve
+from backend.app.services.retriever import hybrid_retrieve
 
 query_router = APIRouter(
     prefix="/query",
@@ -11,4 +11,4 @@ query_router = APIRouter(
 async def query(
     question: str
 ):
-    return retrieve(question)
+    return hybrid_retrieve(question)

@@ -6,6 +6,7 @@ from backend.app.services.embeddings import create_embeddings
 from backend.app.services.parser import parse_pdf
 from backend.app.services.chunker import chunk_documents
 from backend.app.services.vectordb import store_embeddings, count_documents, clear_database, get_all_documents
+from backend.app.services.bm25 import build_bm25_index
 
 upload_router = APIRouter(prefix="/upload")
 
@@ -49,6 +50,7 @@ async def upload_file(file: UploadFile = File(...)):
     embedded_documents = create_embeddings(chunked_documents)
     
     store_embeddings(embedded_documents)
+    build_bm25_index()
     print(f"Total documents in the database: {count_documents()}")
     return {"filename": saved_filename, "message": "File uploaded successfully.", "documents": documents, "chunked_documents": chunked_documents, "embedded_documents": embedded_documents}
             

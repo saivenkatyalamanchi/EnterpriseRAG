@@ -1,11 +1,11 @@
-from backend.app.services.retriever import retrieve
+from backend.app.services.retriever import hybrid_retrieve
 from backend.app.services.llm import generate
 
 
 def answer_question(
     question: str
 ):
-    chunks = retrieve(
+    chunks = hybrid_retrieve(
         question
     )
 
